@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Resolve Aí: ferramentas online gratuitas, simples e rápidas para facilitar seu dia a dia. Calculadoras, sorteadores, ferramentas para estudantes, professores e muito mais.">
+
+    <meta name="keywords" content="calculadora online, calculadora de média, sorteador de nomes, ferramentas online, ferramentas gratuitas, professor, estudante">
+
+    <meta name="author" content="Resolve Aí">
+
+    <title>Resolve Aí — Ferramentas gratuitas para facilitar sua vida</title>
+
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header class="cabecalho">
+
+        <div class="container cabecalho-conteudo">
+
+            <a href="#" class="logo">
+                <span class="logo-icone">✦</span>
+                <span>Resolve<span class="logo-destaque">Aí</span></span>
+            </a>
+
+            <nav class="menu">
+
+                <a href="#ferramentas">Ferramentas</a>
+                <a href="#categorias">Categorias</a>
+                <a href="#novidades">Novidades</a>
+                <a href="#apoie">Apoie</a>
+
+            </nav>
+
+            <button class="botao-tema" id="botaoTema" aria-label="Alternar tema">
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container hero-conteudo">
+
+                <div class="hero-texto">
+
+                    <span class="etiqueta">
+                        ✨ Ferramentas gratuitas
+                    </span>
+
+                    <h1>
+                        Resolva pequenas coisas
+                        <span>em poucos segundos.</span>
+                    </h1>
+
+                    <p>
+                        Calculadoras, sorteadores, ferramentas para estudos,
+                        professores e muito mais. Simples, rápido e gratuito.
+                    </p>
+
+                    <div class="barra-pesquisa">
+
+                        <span>🔎</span>
+
+                        <input
+                            type="text"
+                            id="campoPesquisa"
+                            placeholder="O que você precisa?"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                    <div class="pesquisas-rapidas">
+
+                        <span>Pesquisas:</span>
+
+                        <button onclick="pesquisar('média')">
+                            Calculadora de média
+                        </button>
+
+                        <button onclick="pesquisar('palavras')">
+                            Contador de palavras
+                        </button>
+
+                        <button onclick="pesquisar('sorteador')">
+                            Sorteador
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-ilustracao">
+
+                    <div class="orb orb-1"></div>
+                    <div class="orb orb-2"></div>
+
+                    <div class="painel-flutuante">
+
+                        <div class="mini-topo">
+                            <span>🧮</span>
+                            <strong>Calculadora de média</strong>
+                        </div>
+
+                        <div class="mini-notas">
+
+                            <div>
+                                <small>Nota A</small>
+                                <strong>8,5</strong>
+                            </div>
+
+                            <div>
+                                <small>Nota B</small>
+                                <strong>7,0</strong>
+                            </div>
+
+                            <div>
+                                <small>Nota C</small>
+                                <strong>9,0</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="resultado-mini">
+
+                            <span>Média</span>
+                            <strong>8,17</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CATEGORIAS
+        ========================== -->
+
+        <section class="secao" id="categorias">
+
+            <div class="container">
+
+                <div class="titulo-secao">
+
+                    <div>
+                        <span class="mini-titulo">EXPLORE</span>
+                        <h2>Encontre uma ferramenta</h2>
+                    </div>
+
+                    <p>
+                        Escolha uma categoria e encontre o que precisa.
+                    </p>
+
+                </div>
+
+
+                <div class="categorias">
+
+                    <button class="categoria ativo" data-categoria="todos">
+                        <span>✨</span>
+                        <strong>Todas</strong>
+                    </button>
+
+                    <button class="categoria" data-categoria="educacao">
+                        <span>📚</span>
+                        <strong>Educação</strong>
+                    </button>
+
+                    <button class="categoria" data-categoria="matematica">
+                        <span>🧮</span>
+                        <strong>Matemática</strong>
+                    </button>
+
+                    <button class="categoria" data-categoria="texto">
+                        <span>✍️</span>
+                        <strong>Texto</strong>
+                    </button>
+
+                    <button class="categoria" data-categoria="tempo">
+                        <span>⏱️</span>
+                        <strong>Tempo</strong>
+                    </button>
+
+                    <button class="categoria" data-categoria="diversao">
+                        <span>🎲</span>
+                        <strong>Diversão</strong>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FERRAMENTAS
+        ========================== -->
+
+        <section class="secao ferramentas-secao" id="ferramentas">
+
+            <div class="container">
+
+                <div class="titulo-secao">
+
+                    <div>
+                        <span class="mini-titulo">FERRAMENTAS</span>
+                        <h2>Resolva agora</h2>
+                    </div>
+
+                    <p id="contadorResultados">
+                        Mostrando ferramentas
+                    </p>
+
+                </div>
+
+
+                <div class="grade-ferramentas" id="gradeFerramentas">
+
+
+                    <!-- CARD 1 -->
+
+                    <article
+                        class="card-ferramenta"
+                        data-nome="calculadora de média notas média escolar"
+                        data-categoria="educacao matematica"
+                    >
+
+                        <div class="card-icone roxo">
+                            🧮
+                        </div>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-tag popular">
+                                ⭐ Popular
+                            </span>
+
+                            <h3>Calculadora de Média</h3>
+
+                            <p>
+                                Calcule rapidamente a média de três ou mais notas.
+                            </p>
+
+                            <button class="botao-ferramenta">
+                                Usar ferramenta →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 2 -->
+
+                    <article
+                        class="card-ferramenta"
+                        data-nome="sorteador sorteador de alunos nomes"
+                        data-categoria="educacao diversao"
+                    >
+
+                        <div class="card-icone azul">
+                            🎲
+                        </div>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-tag popular">
+                                ⭐ Popular
+                            </span>
+
+                            <h3>Sorteador de Nomes</h3>
+
+                            <p>
+                                Sorteie nomes de forma rápida e aleatória.
+                            </p>
+
+                            <button class="botao-ferramenta">
+                                Usar ferramenta →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 3 -->
+
+                    <article
+                        class="card-ferramenta"
+                        data-nome="contador palavras caracteres texto redação"
+                        data-categoria="texto educacao"
+                    >
+
+                        <div class="card-icone rosa">
+                            ✍️
+                        </div>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-tag popular">
+                                ⭐ Popular
+                            </span>
+
+                            <h3>Contador de Palavras</h3>
+
+                            <p>
+                                Conte palavras, caracteres e veja o tamanho do seu texto.
+                            </p>
+
+                            <button class="botao-ferramenta">
+                                Usar ferramenta →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 4 -->
+
+                    <article
+                        class="card-ferramenta"
+                        data-nome="calculadora porcentagem desconto"
+                        data-categoria="matematica"
+                    >
+
+                        <div class="card-icone verde">
+                            %
+                        </div>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-tag novo">
+                                🆕 Novo
+                            </span>
+
+                            <h3>Calculadora de Porcentagem</h3>
+
+                            <p>
+                                Descubra porcentagens, descontos e acréscimos.
+                            </p>
+
+                            <button class="botao-ferramenta">
+                                Usar ferramenta →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 5 -->
+
+                    <article
+                        class="card-ferramenta"
+                        data-nome="cronometro timer tempo aula"
+                        data-categoria="tempo educacao"
+                    >
+
+                        <div class="card-icone laranja">
+                            ⏱️
+                        </div>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-tag novo">
+                                🆕 Novo
+                            </span>
+
+                            <h3>Cronômetro</h3>
+
+                            <p>
+                                Cronômetro simples para estudos, aulas e tarefas.
+                            </p>
+
+                            <button class="botao-ferramenta">
+                                Usar ferramenta →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 6 -->
+
+                    <article
+                        class="card-ferramenta"
+                        data-nome="gerador grupos alunos sala aula"
+                        data-categoria="educacao"
+                    >
+
+                        <div class="card-icone ciano">
+                            👥
+                        </div>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-tag">
+                                Educação
+                            </span>
+
+                            <h3>Gerador de Grupos</h3>
+
+                            <p>
+                                Divida alunos em grupos de maneira aleatória.
+                            </p>
+
+                            <button class="botao-ferramenta">
+                                Usar ferramenta →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 7 -->
+
+                    <article
+                        class="card-ferramenta"
+                        data-nome="idade calculadora idade nascimento"
+                        data-categoria="matematica"
+                    >
+
+                        <div class="card-icone amarelo">
+                            🎂
+                        </div>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-tag">
+                                Utilidade
+                            </span>
+
+                            <h3>Calculadora de Idade</h3>
+
+                            <p>
+                                Descubra exatamente quantos anos, meses e dias você tem.
+                            </p>
+
+                            <button class="botao-ferramenta">
+                                Usar ferramenta →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- CARD 8 -->
+
+                    <article
+                        class="card-ferramenta"
+                        data-nome="numero extenso escrever números"
+                        data-categoria="matematica"
+                    >
+
+                        <div class="card-icone vermelho">
+                            🔢
+                        </div>
+
+                        <div class="card-conteudo">
+
+                            <span class="card-tag">
+                                Utilidade
+                            </span>
+
+                            <h3>Número por Extenso</h3>
+
+                            <p>
+                                Transforme números em palavras rapidamente.
+                            </p>
+
+                            <button class="botao-ferramenta">
+                                Usar ferramenta →
+                            </button>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <div class="sem-resultados" id="semResultados">
+
+                    <div>🔎</div>
+
+                    <h3>Nenhuma ferramenta encontrada</h3>
+
+                    <p>
+                        Tente pesquisar outro termo.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NOVIDADES
+        ========================== -->
+
+        <section class="secao novidades" id="novidades">
+
+            <div class="container">
+
+                <div class="bloco-novidades">
+
+                    <div>
+
+                        <span class="mini-titulo">EM BREVE</span>
+
+                        <h2>
+                            Estamos preparando
+                            novas ferramentas 🚀
+                        </h2>
+
+                        <p>
+                            O Resolve Aí está começando. Novas calculadoras,
+                            ferramentas para professores, estudantes e muito
+                            mais serão adicionadas aos poucos.
+                        </p>
+
+                    </div>
+
+                    <div class="numero-ferramentas">
+
+                        <strong>8</strong>
+
+                        <span>
+                            ferramentas<br>
+                            planejadas
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             APOIO / PIX
+        ========================== -->
+
+        <section class="secao apoio" id="apoie">
+
+            <div class="container">
+
+                <div class="apoio-caixa">
+
+                    <div class="apoio-icone">
+                        ❤️
+                    </div>
+
+                    <div class="apoio-texto">
+
+                        <span class="mini-titulo">
+                            APOIE O PROJETO
+                        </span>
+
+                        <h2>
+                            O Resolve Aí é gratuito.
+                        </h2>
+
+                        <p>
+                            Se alguma ferramenta te ajudou, você pode contribuir
+                            para manter o projeto no ar e ajudar na criação de
+                            novas ferramentas.
+                        </p>
+
+                        <div class="pix-area">
+
+                            <div class="pix-chave">
+
+                                <span>🔑</span>
+
+                                <strong id="pix">
+                                    joelsondomingos751@gmail.com
+                                </strong>
+
+                            </div>
+
+                            <button
+                                class="botao-pix"
+                                id="botaoPix"
+                                onclick="copiarPix()"
+                            >
+                                📋 Copiar Pix
+                            </button>
+
+                        </div>
+
+                        <small id="mensagemPix"></small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    
+        <section class="secao guia-uso" id="como-usar">
+            <div class="container">
+                <div class="guia-caixa">
+                    <div><span class="mini-titulo">COMO FUNCIONA</span><h2>Resolva sem complicação.</h2><p>Escolha uma ferramenta, preencha os dados e receba o resultado na hora. Tudo acontece no seu navegador.</p></div>
+                    <div class="guia-passos"><div><strong>01</strong><span>Escolha uma ferramenta</span></div><div><strong>02</strong><span>Informe os dados</span></div><div><strong>03</strong><span>Veja o resultado</span></div></div>
+                </div>
+            </div>
+        </section>
+</main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+
+    <footer class="rodape">
+
+        <div class="container rodape-conteudo">
+
+            <div>
+
+                <a href="#" class="logo logo-footer">
+                    <span class="logo-icone">✦</span>
+                    <span>Resolve<span class="logo-destaque">Aí</span></span>
+                </a>
+
+                <p>
+                    Ferramentas simples para facilitar seu dia.
+                </p>
+
+            </div>
+
+            <div class="rodape-links">
+
+                <a href="#ferramentas">Ferramentas</a>
+                <a href="#categorias">Categorias</a>
+                <a href="#apoie">Apoie</a>
+
+            </div>
+
+        </div>
+
+        <div class="container copyright">
+
+            © 2026 Resolve Aí · Feito para facilitar pequenas tarefas.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           PESQUISA
+        ========================== */
+
+        const campoPesquisa = document.getElementById("campoPesquisa");
+        const cards = document.querySelectorAll(".card-ferramenta");
+        const semResultados = document.getElementById("semResultados");
+        const contadorResultados = document.getElementById("contadorResultados");
+
+        function filtrarFerramentas() {
+
+            const pesquisa = campoPesquisa.value
+                .toLowerCase()
+                .trim();
+
+            let encontrados = 0;
+
+            cards.forEach(card => {
+
+                const nome = card.dataset.nome.toLowerCase();
+
+                if (nome.includes(pesquisa)) {
+
+                    card.style.display = "flex";
+                    encontrados++;
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+            if (encontrados === 0) {
+
+                semResultados.style.display = "block";
+                contadorResultados.textContent = "Nenhuma ferramenta encontrada";
+
+            } else {
+
+                semResultados.style.display = "none";
+                contadorResultados.textContent =
+                    encontrados + " ferramenta(s) encontrada(s)";
+
+            }
+
+        }
+
+        campoPesquisa.addEventListener(
+            "input",
+            filtrarFerramentas
+        );
+
+
+        /* =========================
+           PESQUISAS RÁPIDAS
+        ========================== */
+
+        function pesquisar(texto) {
+
+            campoPesquisa.value = texto;
+
+            document
+                .getElementById("ferramentas")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            filtrarFerramentas();
+
+        }
+
+
+        /* =========================
+           CATEGORIAS
+        ========================== */
+
+        const botoesCategoria =
+            document.querySelectorAll(".categoria");
+
+        botoesCategoria.forEach(botao => {
+
+            botao.addEventListener("click", () => {
+
+                botoesCategoria.forEach(item => {
+                    item.classList.remove("ativo");
+                });
+
+                botao.classList.add("ativo");
+
+                const categoria =
+                    botao.dataset.categoria;
+
+                let encontrados = 0;
+
+                cards.forEach(card => {
+
+                    const categorias =
+                        card.dataset.categoria;
+
+                    if (
+                        categoria === "todos" ||
+                        categorias.includes(categoria)
+                    ) {
+
+                        card.style.display = "flex";
+                        encontrados++;
+
+                    } else {
+
+                        card.style.display = "none";
+
+                    }
+
+                });
+
+                campoPesquisa.value = "";
+
+                if (encontrados === 0) {
+
+                    semResultados.style.display = "block";
+
+                } else {
+
+                    semResultados.style.display = "none";
+
+                }
+
+                contadorResultados.textContent =
+                    encontrados +
+                    " ferramenta(s) encontrada(s)";
+
+            });
+
+        });
+
+
+        /* =========================
+           COPIAR PIX
+        ========================== */
+
+        function copiarPix() {
+
+            const pix =
+                document.getElementById("pix").textContent.trim();
+
+            navigator.clipboard.writeText(pix)
+                .then(() => {
+
+                    const mensagem =
+                        document.getElementById("mensagemPix");
+
+                    mensagem.textContent =
+                        "✓ Chave Pix copiada! Obrigado pelo apoio ❤️";
+
+                    setTimeout(() => {
+
+                        mensagem.textContent = "";
+
+                    }, 4000);
+
+                });
+
+        }
+
+
+        /* =========================
+           MODO ESCURO
+        ========================== */
+
+        const botaoTema =
+            document.getElementById("botaoTema");
+
+        botaoTema.addEventListener("click", () => {
+
+            document.body.classList.toggle("escuro");
+
+            if (
+                document.body.classList.contains("escuro")
+            ) {
+
+                botaoTema.textContent = "☀️";
+
+            } else {
+
+                botaoTema.textContent = "🌙";
+
+            }
+
+        });
+
+
+        /* =========================
+           BOTÕES DAS FERRAMENTAS
+        ========================== */
+
+        const botoesFerramenta =
+            document.querySelectorAll(".botao-ferramenta");
+
+        botoesFerramenta.forEach(botao => {
+
+            botao.addEventListener("click", () => {
+
+                alert(
+                    "🚧 Esta ferramenta está sendo preparada!\n\nEm breve você poderá utilizá-la gratuitamente."
+                );
+
+            });
+
+        });
+
+    
+        /* MELHORIAS: ferramentas rápidas reais */
+        function abrirFerramentaReal(nome) {
+            if (nome.includes('média')) {
+                const entrada = prompt('Digite as notas separadas por vírgula (ex.: 7, 8.5, 9):');
+                if (entrada === null) return;
+                const notas = entrada.split(',').map(n => Number(n.trim().replace(',', '.'))).filter(Number.isFinite);
+                alert(notas.length ? 'Média: ' + (notas.reduce((a,b)=>a+b,0)/notas.length).toFixed(2).replace('.', ',') : 'Digite notas válidas.');
+            } else if (nome.includes('palavras')) {
+                const texto = prompt('Cole ou digite seu texto:');
+                if (texto === null) return;
+                const palavras = texto.trim() ? texto.trim().split(/\s+/).length : 0;
+                alert('Palavras: '+palavras+'\nCaracteres: '+texto.length+'\nLeitura: '+Math.max(1,Math.ceil(palavras/200))+' minuto(s)');
+            } else if (nome.includes('sorteador')) {
+                const entrada = prompt('Digite um nome por linha:');
+                if (entrada === null) return;
+                const nomes = entrada.split(/\n|,/).map(n=>n.trim()).filter(Boolean);
+                alert(nomes.length ? 'Nome sorteado: '+nomes[Math.floor(Math.random()*nomes.length)] : 'Digite pelo menos um nome.');
+            } else if (nome.includes('porcentagem')) {
+                const valor = Number(prompt('Qual é o valor?'));
+                const percentual = Number(prompt('Qual é a porcentagem?'));
+                alert(Number.isFinite(valor)&&Number.isFinite(percentual) ? percentual+'% de '+valor+' = '+(valor*percentual/100).toFixed(2).replace('.', ',') : 'Informe números válidos.');
+            }
+        }
+        document.querySelectorAll('.botao-ferramenta').forEach(botao => botao.addEventListener('click', function(event){
+            event.stopImmediatePropagation();
+            abrirFerramentaReal(this.closest('.card-ferramenta').querySelector('h3').textContent.toLowerCase());
+        }, true));
+</script>
+
+</body>
+</html>
