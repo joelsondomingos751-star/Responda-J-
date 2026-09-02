@@ -903,34 +903,34 @@
         });
 
     
-        /* MELHORIAS: ferramentas rápidas reais */
-        function abrirFerramentaReal(nome) {
-            if (nome.includes('média')) {
-                const entrada = prompt('Digite as notas separadas por vírgula (ex.: 7, 8.5, 9):');
-                if (entrada === null) return;
-                const notas = entrada.split(',').map(n => Number(n.trim().replace(',', '.'))).filter(Number.isFinite);
-                alert(notas.length ? 'Média: ' + (notas.reduce((a,b)=>a+b,0)/notas.length).toFixed(2).replace('.', ',') : 'Digite notas válidas.');
-            } else if (nome.includes('palavras')) {
-                const texto = prompt('Cole ou digite seu texto:');
-                if (texto === null) return;
-                const palavras = texto.trim() ? texto.trim().split(/\s+/).length : 0;
-                alert('Palavras: '+palavras+'\nCaracteres: '+texto.length+'\nLeitura: '+Math.max(1,Math.ceil(palavras/200))+' minuto(s)');
-            } else if (nome.includes('sorteador')) {
-                const entrada = prompt('Digite um nome por linha:');
-                if (entrada === null) return;
-                const nomes = entrada.split(/\n|,/).map(n=>n.trim()).filter(Boolean);
-                alert(nomes.length ? 'Nome sorteado: '+nomes[Math.floor(Math.random()*nomes.length)] : 'Digite pelo menos um nome.');
-            } else if (nome.includes('porcentagem')) {
-                const valor = Number(prompt('Qual é o valor?'));
-                const percentual = Number(prompt('Qual é a porcentagem?'));
-                alert(Number.isFinite(valor)&&Number.isFinite(percentual) ? percentual+'% de '+valor+' = '+(valor*percentual/100).toFixed(2).replace('.', ',') : 'Informe números válidos.');
-            }
-        }
-        document.querySelectorAll('.botao-ferramenta').forEach(botao => botao.addEventListener('click', function(event){
-            event.stopImmediatePropagation();
-            abrirFerramentaReal(this.closest('.card-ferramenta').querySelector('h3').textContent.toLowerCase());
-        }, true));
+
+        /* REVISÃO DE FUNCIONALIDADE: painel próprio, sem prompt */
+        const painel = document.getElementById('painelFerramenta');
+        const campos = document.getElementById('camposPainel');
+        const resultado = document.getElementById('resultadoPainel');
+        let ferramentaAtual = '';
+        const configuracoes = {
+          'calculadora de média': {tipo:'MATEMÁTICA', titulo:'Calculadora de média', desc:'Digite uma nota em cada linha. Você pode adicionar quantas linhas quiser.', html:'<label>Notas<textarea id="entradaNotas" rows="7" placeholder="Ex.: 7,5, 8, 9"></textarea></label>', acao:()=>{const n=document.getElementById('entradaNotas').value.split(/\n|,/).map(x=>Number(x.trim().replace(',','.'))).filter(Number.isFinite);return n.length?'Média: '+(n.reduce((a,b)=>a+b,0)/n.length).toFixed(2).replace('.',','):'Digite pelo menos uma nota válida.'}},
+          'sorteador de nomes': {tipo:'EDUCAÇÃO', titulo:'Sorteador de nomes', desc:'Digite um nome em cada linha. Não há limite de linhas.', html:'<label>Nomes<textarea id="entradaNomes" rows="9" placeholder="Ana, João, Maria, Pedro"></textarea></label>', acao:()=>{const n=document.getElementById('entradaNomes').value.split(/\n|,/).map(x=>x.trim()).filter(Boolean);return n.length?'Nome sorteado: '+n[Math.floor(Math.random()*n.length)]:'Digite pelo menos um nome.'}},
+          'contador de palavras': {tipo:'TEXTO', titulo:'Contador de palavras', desc:'Cole ou escreva o seu texto no campo abaixo.', html:'<label>Texto<textarea id="entradaTexto" rows="9" placeholder="Comece a escrever..."></textarea></label>', acao:()=>{const t=document.getElementById('entradaTexto').value;const n=t.trim()?t.trim().split(/\s+/).length:0;return 'Palavras: '+n+' · Caracteres: '+t.length+' · Leitura: '+Math.max(1,Math.ceil(n/200))+' min'}},
+          'calculadora de porcentagem': {tipo:'MATEMÁTICA', titulo:'Calculadora de porcentagem', desc:'Informe o valor e a porcentagem que deseja calcular.', html:'<div class="campos-duplos"><label>Valor<input id="entradaValor" type="number" placeholder="200"></label><label>Porcentagem<input id="entradaPercentual" type="number" placeholder="10"></label></div>', acao:()=>{const v=Number(document.getElementById('entradaValor').value),p=Number(document.getElementById('entradaPercentual').value);return Number.isFinite(v)&&Number.isFinite(p)?p+'% de '+v+' = '+(v*p/100).toFixed(2).replace('.',','):'Informe os dois números.'}}
+        };
+        function abrirFerramentaReal(nome){const chave=Object.keys(configuracoes).find(k=>nome.includes(k));if(!chave){alert('Esta ferramenta será adicionada em breve.');return;} ferramentaAtual=chave;const c=configuracoes[chave];document.getElementById('tipoPainel').textContent=c.tipo;document.getElementById('tituloPainel').textContent=c.titulo;document.getElementById('descricaoPainel').textContent=c.desc;campos.innerHTML=c.html;resultado.textContent='O resultado aparecerá aqui.';painel.classList.add('aberto');painel.setAttribute('aria-hidden','false');document.body.classList.add('painel-aberto');setTimeout(()=>campos.querySelector('textarea,input')?.focus(),80);}
+        document.querySelectorAll('.botao-ferramenta').forEach(botao=>botao.addEventListener('click',function(event){event.preventDefault();event.stopImmediatePropagation();abrirFerramentaReal(this.closest('.card-ferramenta').querySelector('h3').textContent.toLowerCase());},true));
+        document.getElementById('executarPainel').addEventListener('click',()=>{resultado.textContent=configuracoes[ferramentaAtual].acao();});
+        document.getElementById('limparPainel').addEventListener('click',()=>{campos.querySelectorAll('input,textarea').forEach(x=>x.value='');resultado.textContent='O resultado aparecerá aqui.';});
+        function fecharPainel(){painel.classList.remove('aberto');painel.setAttribute('aria-hidden','true');document.body.classList.remove('painel-aberto');}
+        document.getElementById('fecharPainel').addEventListener('click',fecharPainel);painel.addEventListener('click',e=>{if(e.target===painel)fecharPainel();});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&painel.classList.contains('aberto'))fecharPainel();});
+        document.querySelectorAll('.categoria').forEach(botao=>botao.addEventListener('click',()=>setTimeout(()=>document.getElementById('ferramentas').scrollIntoView({behavior:'smooth',block:'start'}),50)));
 </script>
 
-</body>
+
+<div class="painel-ferramenta" id="painelFerramenta" aria-hidden="true">
+  <div class="painel-conteudo" role="dialog" aria-modal="true" aria-labelledby="tituloPainel">
+    <button class="fechar-painel" id="fecharPainel" aria-label="Fechar ferramenta">×</button>
+    <span class="mini-titulo" id="tipoPainel">FERRAMENTA</span><h2 id="tituloPainel">Ferramenta</h2><p id="descricaoPainel"></p>
+    <div id="camposPainel"></div><div class="acoes-painel"><button class="botao-principal" id="executarPainel">Calcular resultado</button><button class="botao-secundario" id="limparPainel">Limpar</button></div>
+    <div class="resultado-painel" id="resultadoPainel" aria-live="polite">O resultado aparecerá aqui.</div>
+  </div>
+</div></body>
 </html>
